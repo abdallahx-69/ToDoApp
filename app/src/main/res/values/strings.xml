@@ -2,4 +2,9 @@
     <string name="app_name">ToDo</string>
     <string name="icon_add_content_description">Icon ADD Content Description</string>
     <string name="todo_list_title_app">ToDo List</string>
+    <string name="enter_task_title">Enter Task Title</string>
+    <string name="add_new_task">Add New Task</string>
+    <string name="enter_task_description">Enter Task Description …</string>
+    <string name="select_date_of_task">Select Date Of Task :</string>
+    <string name="select_time_of_task">Select Time Of Task :</string>
 </resources>

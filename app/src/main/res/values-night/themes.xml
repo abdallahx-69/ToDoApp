@@ -22,4 +22,10 @@
             @color/blue_gray
         </item>
     </style>
+
+    <style name="TaskBackGround">
+        <item name="android:background">
+            @color/blue_gray
+        </item>
+    </style>
 </resources>

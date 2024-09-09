@@ -9,25 +9,11 @@
     style="@style/BackGround"
     >
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <Toolbar
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/blue"
-            android:title="@string/todo_list_title_app"
-            android:titleTextColor="@color/white"
-            style="@style/TitleTextColor"
-            />
-    </com.google.android.material.appbar.AppBarLayout>
 
     <FrameLayout
         android:id="@+id/id_todoFragmentContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="60dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
 
@@ -46,6 +32,7 @@
         >
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/id_bottomNavigationView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center"
@@ -58,6 +45,7 @@
     </com.google.android.material.bottomappbar.BottomAppBar>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/id_iconAdd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:contentDescription="@string/icon_add_content_description"
