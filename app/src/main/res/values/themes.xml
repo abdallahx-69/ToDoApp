@@ -5,6 +5,7 @@
     <style name="Theme.ToDoApp" parent="Base.Theme.ToDoApp">
         <item name="android:colorPrimary">@color/green_mint</item>
         <item name="android:statusBarColor">@color/blue</item>
+        <item name="colorAccent">@color/blue</item>
     </style>
 
     <style name="BackGround">
@@ -26,6 +27,18 @@
     <style name="TaskBackGround">
         <item name="android:background">
             @color/white
+        </item>
+    </style>
+
+    <style name="AddNewTaskTextStyle">
+        <item name="android:textSize">
+            20sp
+        </item>
+        <item name="android:textStyle">
+            bold
+        </item>
+        <item name="android:textColor">
+            @color/black
         </item>
     </style>
 </resources>

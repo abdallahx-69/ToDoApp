@@ -9,7 +9,7 @@ import com.androidapps.todoapp.database.dao.TaskDao
 import com.androidapps.todoapp.database.model.Task
 import com.androidapps.todoapp.database.typeConverters.DataConverter
 
-@Database([Task::class], version = 1, exportSchema = false)
+@Database([Task::class], version = 2, exportSchema = false)
 @TypeConverters(DataConverter::class)
 abstract class TaskDataBase : RoomDatabase() {
     abstract fun getTaskDao(): TaskDao

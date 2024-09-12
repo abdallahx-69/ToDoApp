@@ -11,6 +11,7 @@
         android:text="@string/add_new_task"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        style="@style/AddNewTaskTextStyle"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
@@ -32,7 +33,7 @@
         app:layout_constraintTop_toBottomOf="@id/id_titleEditText" />
 
     <TextView
-        android:id="@+id/id_selectTaskDateText"
+        android:id="@+id/id_selectTaskDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
@@ -43,7 +44,7 @@
         app:layout_constraintTop_toBottomOf="@id/id_descriptionEditText" />
 
     <TextView
-        android:id="@+id/id_selectTaskTimeText"
+        android:id="@+id/id_selectTaskTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
@@ -51,19 +52,20 @@
         android:text="@string/select_time_of_task"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/id_selectTaskDateText"
+        app:layout_constraintTop_toBottomOf="@id/id_selectTaskDate"
 
         />
 
     <Button
+        android:id="@+id/id_addButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:backgroundTint="@color/blue"
-        android:text="Add"
+        android:text="@string/add"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/id_selectTaskTimeText" />
+        app:layout_constraintTop_toBottomOf="@id/id_selectTaskTime" />
 </androidx.constraintlayout.widget.ConstraintLayout>
