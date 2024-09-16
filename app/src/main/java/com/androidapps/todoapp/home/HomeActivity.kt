@@ -11,9 +11,11 @@ import com.androidapps.todoapp.fragments.SettingsFragment
 import com.androidapps.todoapp.fragments.TodoListFragment
 
 class HomeActivity : AppCompatActivity() {
+
     private lateinit var binding: ActivityHomeBinding
     private lateinit var todoListFragment: TodoListFragment
     private lateinit var settingsFragment: SettingsFragment
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityHomeBinding.inflate(layoutInflater)
@@ -37,12 +39,17 @@ class HomeActivity : AppCompatActivity() {
         }
         binding.idBottomNavigationView.setOnItemSelectedListener {
             when (it.itemId) {
-                R.id.id_iconList -> pushFragment(todoListFragment)
+                R.id.id_iconList -> {
+                    if (todoListFragment.isAdded) {
+                        todoListFragment.clearDateSelection()
+                        todoListFragment.updateUI()
+                    }
+                    pushFragment(todoListFragment)
+                }
                 R.id.id_iconSetting -> pushFragment(settingsFragment)
             }
             return@setOnItemSelectedListener true
         }
-
         binding.idBottomNavigationView.selectedItemId = R.id.id_iconList
     }
 
@@ -50,4 +57,5 @@ class HomeActivity : AppCompatActivity() {
         supportFragmentManager.beginTransaction()
             .replace(binding.idTodoFragmentContainer.id, fragment).commit()
     }
+
 }

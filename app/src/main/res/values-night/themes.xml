@@ -6,19 +6,39 @@
         <item name="android:colorPrimary">@color/blue_dark</item>
         <item name="android:statusBarColor">@color/blue</item>
         <item name="colorAccent">@color/blue</item>
-
     </style>
 
-    <style name="BackGround">
+    <style name="BackGroundColor">
         <item name="android:background">
             @color/blue_dark
         </item>
     </style>
-    <style name="TitleTextColor">
+
+    <style name="ToolbarTextStyle">
         <item name="android:titleTextColor">
-            @color/blue_dark
+            @color/white
+        </item>
+        <item name="android:textStyle">
+            bold
+        </item>
+        <item name="android:textSize">
+            20sp
         </item>
     </style>
+
+    <style name="MonthNameTextStyle">
+        <item name="android:textStyle">
+            bold
+        </item>
+        <item name="android:textColor">
+            @color/blue_dark
+        </item>
+        <item name="android:textSize">
+            18sp
+        </item>
+    </style>
+
+
     <style name="BottomNavigationColor">
         <item name="android:backgroundTint">
             @color/blue_gray
