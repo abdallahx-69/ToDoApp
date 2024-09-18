@@ -1,7 +1,12 @@
 package com.androidapps.todoapp.home
 
+import android.content.res.Configuration
 import android.os.Bundle
+import android.view.View
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import com.androidapps.todoapp.R
 import com.androidapps.todoapp.callbacks.OnTaskAddedListener
@@ -44,7 +49,36 @@ class HomeActivity : AppCompatActivity() {
                     pushFragment(todoListFragment)
                 }
 //                R.id.id_iconLanguage ->
-//                R.id.id_iconMode ->
+                R.id.id_iconList -> {
+                    if (todoListFragment.isAdded) {
+                        todoListFragment.clearDateSelection()
+                        todoListFragment.updateUI()
+                    }
+                    pushFragment(todoListFragment)
+                }
+
+                R.id.id_iconMode -> {
+                    val fadeOut = AnimationUtils.loadAnimation(this, R.anim.anim_out)
+                    val fadeIn = AnimationUtils.loadAnimation(this, R.anim.anim_in)
+                    val rootView = window.decorView.findViewById<View>(android.R.id.content)
+                    rootView.startAnimation(fadeOut)
+                    fadeOut.setAnimationListener(object : Animation.AnimationListener {
+                        override fun onAnimationStart(animation: Animation) {}
+                        override fun onAnimationEnd(animation: Animation) {
+                            val currentNightMode =
+                                resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
+                            if (currentNightMode == Configuration.UI_MODE_NIGHT_YES) {
+                                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                            } else {
+                                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                            }
+                            rootView.startAnimation(fadeIn)
+                            binding.idBottomNavigationView.selectedItemId = R.id.id_iconList
+                        }
+
+                        override fun onAnimationRepeat(animation: Animation) {}
+                    })
+                }
             }
             return@setOnItemSelectedListener true
         }
