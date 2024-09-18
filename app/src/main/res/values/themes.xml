@@ -3,7 +3,7 @@
     <style name="Base.Theme.ToDoApp" parent="Theme.MaterialComponents.DayNight.NoActionBar" />
 
     <style name="Theme.ToDoApp" parent="Base.Theme.ToDoApp">
-        <item name="android:colorPrimary">@color/green_mint</item>
+        <item name="android:colorPrimary">@color/blue</item>
         <item name="android:statusBarColor">@color/blue</item>
         <item name="colorAccent">@color/blue</item>
     </style>
@@ -13,6 +13,75 @@
             @color/green_mint
         </item>
     </style>
+
+    <style name="BottomNavigationColor">
+        <item name="android:backgroundTint">
+            @color/white
+        </item>
+    </style>
+
+    <style name="AddNewTaskTextStyle">
+        <item name="android:textSize">
+            20sp
+        </item>
+        <item name="android:textStyle">
+            bold
+        </item>
+        <item name="android:textColor">
+            @color/black
+        </item>
+        <item name="android:padding">
+            10dp
+        </item>
+    </style>
+
+    <style name="BackGroundColorForAddToDo">
+        <item name="android:background">
+            @color/white
+        </item>
+    </style>
+
+    <style name="HintTitleDescriptionTextStyle">
+        <item name="android:layout_margin">
+            15dp
+        </item>
+        <item name="android:inputType">
+            text
+        </item>
+        <item name="android:textColorHint">
+            @color/gray
+        </item>
+        <item name="android:padding">
+            15dp
+        </item>
+    </style>
+
+    <style name="SelectAddDateTimeTextStyle">
+        <item name="android:layout_margin">
+            10dp
+        </item>
+        <item name="android:padding">
+            10dp
+        </item>
+        <item name="android:textColor">
+            @color/black
+        </item>
+    </style>
+
+    <style name="CustomDatePickerDialog" parent="ThemeOverlay.MaterialComponents.MaterialCalendar">
+        <item name="android:buttonBarPositiveButtonStyle">@style/CustomButtonStyle</item>
+        <item name="android:buttonBarNegativeButtonStyle">@style/CustomButtonStyle</item>
+    </style>
+
+    <style name="CustomTimePickerDialog" parent="ThemeOverlay.MaterialComponents.TimePicker">
+        <item name="android:buttonBarPositiveButtonStyle">@style/CustomButtonStyle</item>
+        <item name="android:buttonBarNegativeButtonStyle">@style/CustomButtonStyle</item>
+    </style>
+
+    <style name="CustomButtonStyle" parent="Widget.MaterialComponents.Button.TextButton.Dialog">
+        <item name="android:textColor">@color/blue</item>
+    </style>
+
 
     <style name="ToolbarTextStyle">
         <item name="android:titleTextColor">
@@ -38,27 +107,40 @@
         </item>
     </style>
 
-    <style name="BottomNavigationColor">
-        <item name="android:backgroundTint">
-            @color/white
-        </item>
-    </style>
-
     <style name="TaskBackGround">
         <item name="android:background">
             @color/white
         </item>
     </style>
 
-    <style name="AddNewTaskTextStyle">
+    <style name="TextStyleInItemCalender">
+        <item name="android:textAlignment">
+            center
+        </item>
         <item name="android:textSize">
-            20sp
+            15sp
         </item>
-        <item name="android:textStyle">
-            bold
+        <item name="android:textColor">
+            @color/dark_gray
         </item>
+    </style>
+
+    <style name="ItemCalenderColor">
+        <item name="android:backgroundTint">
+            @color/white
+        </item>
+    </style>
+
+    <style name="TextStyleInItemTask">
         <item name="android:textColor">
             @color/black
         </item>
+        <item name="android:textSize">
+            15sp
+        </item>
+        <item name="android:padding">
+            8dp
+        </item>
     </style>
+
 </resources>

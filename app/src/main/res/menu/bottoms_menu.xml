@@ -1,11 +1,22 @@
-<?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="@+id/id_iconList"
+    <item
+        android:id="@+id/id_iconList"
+        android:layout_weight="1"
         android:icon="@drawable/icon_list"
-        android:title="List"
-        />
-    <item android:id="@+id/id_iconSetting"
-        android:icon="@drawable/icon_setting"
-        android:title="Setting"
-        />
+        android:title="@string/list_title_icon" />
+    <item
+        android:id="@+id/id_space"
+        android:layout_weight="1"
+        android:icon="@null"
+        android:title="" />
+    <item
+        android:id="@+id/id_iconLanguage"
+        android:layout_weight="1"
+        android:icon="@drawable/icon_language"
+        android:title="@string/language_title_icon" />
+    <item
+        android:id="@+id/id_iconMode"
+        android:layout_weight="1"
+        android:icon="@drawable/icon_mode"
+        android:title="@string/mode_title_icon" />
 </menu>

@@ -9,14 +9,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.DialogFragment
 import com.androidapps.todoapp.R
 import com.androidapps.todoapp.callbacks.OnTaskAddedListener
 import com.androidapps.todoapp.database.database.TaskDataBase
 import com.androidapps.todoapp.database.model.Task
 import com.androidapps.todoapp.databinding.FragmentAddTodoBinding
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
-class AddTaskBottomSheetFragment : BottomSheetDialogFragment() {
+class AddTaskDialogFragment : DialogFragment() {
     private lateinit var binding: FragmentAddTodoBinding
     private lateinit var calendar: Calendar
     private var isDateSelected: Boolean = false
@@ -33,6 +33,10 @@ class AddTaskBottomSheetFragment : BottomSheetDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        dialog?.window?.setLayout(
+            ViewGroup.LayoutParams.MATCH_PARENT,
+            ViewGroup.LayoutParams.WRAP_CONTENT
+        )
         calendar = Calendar.getInstance()
         initViews()
     }
@@ -60,19 +64,27 @@ class AddTaskBottomSheetFragment : BottomSheetDialogFragment() {
             }
         }
         binding.idSelectTaskDate.setOnClickListener {
-            val datePicker = DatePickerDialog(requireContext())
-            datePicker.setOnDateSetListener { _, year, month, dayOfMonth ->
-                isDateSelected = true
-                calendar.set(Calendar.YEAR, year)
-                calendar.set(Calendar.MONTH, month)
-                calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
-                binding.idSelectTaskDate.text = "$dayOfMonth/${month + 1}/$year"
-            }
-            datePicker.show()
+            val datePickerDialog = DatePickerDialog(
+                requireContext(),
+                R.style.CustomDatePickerDialog,
+                { _, year, month, dayOfMonth ->
+                    isDateSelected = true
+                    calendar.set(Calendar.YEAR, year)
+                    calendar.set(Calendar.MONTH, month)
+                    calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+                    binding.idSelectTaskDate.text = "$dayOfMonth/${month + 1}/$year"
+                },
+                calendar.get(Calendar.YEAR),
+                calendar.get(Calendar.MONTH),
+                calendar.get(Calendar.DAY_OF_MONTH)
+            )
+            datePickerDialog.show()
         }
+
         binding.idSelectTaskTime.setOnClickListener {
             val timePicker = TimePickerDialog(
                 requireContext(),
+                R.style.CustomTimePickerDialog,
                 { _, hourOfDay, minute ->
                     isTimeSelected = true
                     calendar.set(Calendar.HOUR_OF_DAY, hourOfDay)

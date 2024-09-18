@@ -6,25 +6,22 @@ import androidx.fragment.app.Fragment
 import com.androidapps.todoapp.R
 import com.androidapps.todoapp.callbacks.OnTaskAddedListener
 import com.androidapps.todoapp.databinding.ActivityHomeBinding
-import com.androidapps.todoapp.fragments.AddTaskBottomSheetFragment
-import com.androidapps.todoapp.fragments.SettingsFragment
+import com.androidapps.todoapp.fragments.AddTaskDialogFragment
 import com.androidapps.todoapp.fragments.TodoListFragment
 
 class HomeActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityHomeBinding
     private lateinit var todoListFragment: TodoListFragment
-    private lateinit var settingsFragment: SettingsFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
         todoListFragment = TodoListFragment()
-        settingsFragment = SettingsFragment()
         binding.idIconAdd.setOnClickListener {
-            val bottomSheetFragment = AddTaskBottomSheetFragment()
-            bottomSheetFragment.onTaskAddedListener = object : OnTaskAddedListener {
+            val addTaskDialogFragment = AddTaskDialogFragment()
+            addTaskDialogFragment.onTaskAddedListener = object : OnTaskAddedListener {
                 override fun onTaskAdded() {
                     if (todoListFragment.isVisible) {
                         if (todoListFragment.selectedDate == null) {
@@ -35,7 +32,7 @@ class HomeActivity : AppCompatActivity() {
                     }
                 }
             }
-            bottomSheetFragment.show(supportFragmentManager, null)
+            addTaskDialogFragment.show(supportFragmentManager, "AddTaskDialogFragment")
         }
         binding.idBottomNavigationView.setOnItemSelectedListener {
             when (it.itemId) {
@@ -46,7 +43,8 @@ class HomeActivity : AppCompatActivity() {
                     }
                     pushFragment(todoListFragment)
                 }
-                R.id.id_iconSetting -> pushFragment(settingsFragment)
+//                R.id.id_iconLanguage ->
+//                R.id.id_iconMode ->
             }
             return@setOnItemSelectedListener true
         }

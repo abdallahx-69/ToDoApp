@@ -75,28 +75,22 @@ class TodoListFragment : Fragment() {
                     TextStyle.SHORT, Locale.getDefault()
                 )
                 container.dayInMonthTextView.text = "${data.date.dayOfMonth}"
-                if (data.date == selectedDate) {
-                    container.dayInMonthTextView.setTextColor(
-                        ResourcesCompat.getColor(
-                            resources, R.color.blue, null
-                        )
-                    )
-                    container.weekDayTextView.setTextColor(
-                        ResourcesCompat.getColor(
-                            resources, R.color.blue, null
-                        )
-                    )
+                val context = container.view.context
+                val selectedTextColor =
+                    ResourcesCompat.getColor(context.resources, R.color.blue, null)
+                val defaultTextColor = if (context.resources.configuration.uiMode and
+                    android.content.res.Configuration.UI_MODE_NIGHT_MASK == android.content.res.Configuration.UI_MODE_NIGHT_YES
+                ) {
+                    ResourcesCompat.getColor(context.resources, R.color.white, null)
                 } else {
-                    container.dayInMonthTextView.setTextColor(
-                        ResourcesCompat.getColor(
-                            resources, R.color.black, null
-                        )
-                    )
-                    container.weekDayTextView.setTextColor(
-                        ResourcesCompat.getColor(
-                            resources, R.color.black, null
-                        )
-                    )
+                    ResourcesCompat.getColor(context.resources, R.color.dark_gray, null)
+                }
+                if (data.date == selectedDate) {
+                    container.dayInMonthTextView.setTextColor(selectedTextColor)
+                    container.weekDayTextView.setTextColor(selectedTextColor)
+                } else {
+                    container.dayInMonthTextView.setTextColor(defaultTextColor)
+                    container.weekDayTextView.setTextColor(defaultTextColor)
                 }
                 container.view.setOnClickListener {
                     selectedDate = data.date
@@ -113,6 +107,7 @@ class TodoListFragment : Fragment() {
                     updateUI()
                 }
             }
+
             override fun create(view: View): WeekDayViewContainer {
                 return WeekDayViewContainer(view)
             }
@@ -122,6 +117,7 @@ class TodoListFragment : Fragment() {
             binding.idMonthNameText.text = month
         }
     }
+
 
     fun getTasksByDate(date: Date) {
         val tasks = TaskDataBase.getInstance(requireContext()).getTaskDao().getTaskByDate(date)

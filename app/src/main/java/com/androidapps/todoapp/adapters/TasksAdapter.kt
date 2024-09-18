@@ -6,15 +6,19 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.androidapps.todoapp.database.model.Task
 import com.androidapps.todoapp.databinding.ItemTaskBinding
+import java.text.SimpleDateFormat
+import java.util.Locale
 
 class TasksAdapter(private var tasksList: List<Task>) :
     RecyclerView.Adapter<TasksAdapter.TaskViewHolder>() {
-
     class TaskViewHolder(private val binding: ItemTaskBinding) :
         RecyclerView.ViewHolder(binding.root) {
+        private val dateFormat = SimpleDateFormat("d/M/yyyy", Locale.getDefault())
         fun bind(task: Task) {
             binding.idTaskTime.text = task.time
             binding.idTaskTitle.text = task.title
+            val formattedDate = task.date?.let { dateFormat.format(it) }
+            binding.idTaskDate.text = formattedDate ?: "No Date"
         }
     }
 
