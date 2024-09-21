@@ -15,4 +15,11 @@
     <string name="list_title_icon">List</string>
     <string name="language_title_icon">Language</string>
     <string name="mode_title_icon">Mode</string>
+    <string name="edit_task_text_in_content_edit_task">Edit Task</string>
+    <string name="title_hint_in_edit_task">Title</string>
+    <string name="description_hint_in_edit_task">Description</string>
+    <string name="select_date_hint_in_edit_task">Select Date</string>
+    <string name="select_time_hint_in_edit_task">Select Time</string>
+    <string name="save_button_in_edit_task">Save Changes</string>
+    <string name="edit_button_in_edit_task">Edit</string>
 </resources>

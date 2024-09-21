@@ -95,10 +95,9 @@ class TodoListFragment : Fragment() {
                 container.view.setOnClickListener {
                     selectedDate = data.date
                     binding.idWeekCalendarView.notifyWeekChanged(data)
-                    val date = data.date
-                    calendar.set(Calendar.YEAR, date.year)
-                    calendar.set(Calendar.MONTH, date.month.value - 1)
-                    calendar.set(Calendar.DAY_OF_MONTH, date.dayOfMonth)
+                    calendar.set(Calendar.YEAR, data.date.year)
+                    calendar.set(Calendar.MONTH, data.date.month.value - 1)
+                    calendar.set(Calendar.DAY_OF_MONTH, data.date.dayOfMonth)
                     calendar.set(Calendar.HOUR, 0)
                     calendar.set(Calendar.MINUTE, 0)
                     calendar.set(Calendar.SECOND, 0)
@@ -118,9 +117,21 @@ class TodoListFragment : Fragment() {
         }
     }
 
-
     fun getTasksByDate(date: Date) {
-        val tasks = TaskDataBase.getInstance(requireContext()).getTaskDao().getTaskByDate(date)
+        val calendar = Calendar.getInstance()
+        calendar.time = date
+        calendar.set(Calendar.HOUR_OF_DAY, 0)
+        calendar.set(Calendar.MINUTE, 0)
+        calendar.set(Calendar.SECOND, 0)
+        calendar.set(Calendar.MILLISECOND, 0)
+        val startDate = calendar.time
+        calendar.set(Calendar.HOUR_OF_DAY, 23)
+        calendar.set(Calendar.MINUTE, 59)
+        calendar.set(Calendar.SECOND, 59)
+        calendar.set(Calendar.MILLISECOND, 999)
+        val endDate = calendar.time
+        val tasks = TaskDataBase.getInstance(requireContext()).getTaskDao()
+            .getTaskByDateRange(startDate, endDate)
         adapter.updateList(tasks)
     }
 
