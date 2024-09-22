@@ -1,0 +1,40 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/BackGroundColor"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".home.EditTaskActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/id_todoToolBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/blue"
+        android:titleTextAppearance="@style/ToolbarTextStyle"
+        app:layout_constraintBottom_toTopOf="@id/id_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:title="@string/todo_list_title_app"
+        app:titleTextAppearance="@style/ToolbarTextStyle" />
+
+    <View
+        android:id="@+id/id_view"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@color/blue"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/id_todoToolBar" />
+
+    <include
+        android:id="@+id/id_content"
+        layout="@layout/content_edit_task"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/id_todoToolBar" />
+</androidx.constraintlayout.widget.ConstraintLayout>

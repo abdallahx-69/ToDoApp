@@ -56,6 +56,7 @@ class TodoListFragment : Fragment() {
         binding.idTaskRecyclerView.adapter = adapter
     }
 
+
     private fun initWeekCalendarView() {
         bindWeekCalendarView()
         val currentDate = LocalDate.now()

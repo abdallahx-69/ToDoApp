@@ -12,6 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ToDoApp"
         tools:targetApi="31">
+
+        <activity
+            android:name=".home.EditTaskActivity"
+            android:exported="true" />
         <activity
             android:name=".home.HomeActivity"
             android:exported="true">
