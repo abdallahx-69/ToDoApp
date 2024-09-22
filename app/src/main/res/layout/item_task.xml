@@ -2,7 +2,6 @@
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/id_cardItemTask"
     style="@style/TaskBackGround"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -12,88 +11,122 @@
     app:contentPadding="18dp"
     app:strokeColor="@android:color/transparent">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <com.zerobranch.layout.SwipeLayout
+        android:id="@+id/id_swipeLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        app:draggedItem="@id/id_cardItemTask"
+        app:isFreeDragAfterOpen="true"
+        app:isTogether="true"
+        app:leftItem="@id/id_deleteIcon"
+        app:swipeDirection="right">
 
-        <View
-            android:id="@+id/id_taskStatus"
-            android:layout_width="3dp"
-            android:layout_height="0dp"
-            android:background="@color/blue"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        <ImageView
+            android:id="@+id/id_deleteIcon"
+            android:layout_width="90dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="end"
+            android:background="@color/red"
+            android:contentDescription="@string/icon_add_new_task_content_description"
+            android:gravity="center"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp"
+            android:src="@drawable/icon_delete" />
 
-        <TextView
-            android:id="@+id/id_taskTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:textColor="@color/blue"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@+id/id_taskStatus"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="Play BasketBall" />
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/id_cardItemTask"
+            style="@style/TaskBackGround"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/id_taskTime"
-            style="@style/TextStyleInItemTask"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toEndOf="@+id/id_taskStatus"
-            app:layout_constraintTop_toBottomOf="@id/id_taskTitle"
-            tools:text="10:30 PM" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/id_itemTask"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/id_taskDate"
-            style="@style/TextStyleInItemTask"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/id_taskStatus"
-            app:layout_constraintTop_toBottomOf="@id/id_taskTime"
-            tools:text="20/11/2002" />
+                <View
+                    android:id="@+id/id_taskStatus"
+                    android:layout_width="3dp"
+                    android:layout_height="0dp"
+                    android:background="@color/blue"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/id_cardViewIconCheck"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/blue"
-            android:paddingVertical="8dp"
-            app:cardCornerRadius="8dp"
-            app:contentPadding="2dp"
-            app:layout_constraintBottom_toTopOf="@id/id_editTaskButton"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/id_editTaskButton"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_chainStyle="spread">
+                <TextView
+                    android:id="@+id/id_taskTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp"
+                    android:textColor="@color/blue"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toEndOf="@+id/id_taskStatus"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Play BasketBall" />
 
-            <ImageView
-                android:id="@+id/id_iconCheck"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="16dp"
-                android:layout_marginVertical="8dp"
-                android:contentDescription="@string/icon_add_new_task_content_description"
-                android:src="@drawable/icon_check" />
+                <TextView
+                    android:id="@+id/id_taskTime"
+                    style="@style/TextStyleInItemTask"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toEndOf="@+id/id_taskStatus"
+                    app:layout_constraintTop_toBottomOf="@id/id_taskTitle"
+                    tools:text="10:30 PM" />
 
-        </androidx.cardview.widget.CardView>
+                <TextView
+                    android:id="@+id/id_taskDate"
+                    style="@style/TextStyleInItemTask"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/id_taskStatus"
+                    app:layout_constraintTop_toBottomOf="@id/id_taskTime"
+                    tools:text="20/11/2002" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/id_editTaskButton"
-            style="@style/Widget.MaterialComponents.Button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/blue"
-            android:text="@string/edit_button_in_edit_task"
-            android:textColor="@android:color/white"
-            android:textSize="16sp"
-            app:cornerRadius="50dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/id_cardViewIconCheck" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/id_cardViewIconCheck"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/blue"
+                    android:paddingVertical="8dp"
+                    app:cardCornerRadius="8dp"
+                    app:contentPadding="2dp"
+                    app:layout_constraintBottom_toTopOf="@id/id_editTaskButton"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/id_editTaskButton"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_chainStyle="spread">
+
+                    <ImageView
+                        android:id="@+id/id_iconCheck"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginVertical="8dp"
+                        android:contentDescription="@string/icon_add_new_task_content_description"
+                        android:src="@drawable/icon_check" />
+
+                </androidx.cardview.widget.CardView>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/id_editTaskButton"
+                    style="@style/Widget.MaterialComponents.Button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/blue"
+                    android:text="@string/edit_button_in_edit_task"
+                    android:textColor="@android:color/white"
+                    android:textSize="16sp"
+                    app:cornerRadius="50dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/id_cardViewIconCheck" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+    </com.zerobranch.layout.SwipeLayout>
 
 </com.google.android.material.card.MaterialCardView>

@@ -11,6 +11,7 @@ material = "1.12.0"
 roomRuntime = "2.6.1"
 activity = "1.9.2"
 constraintlayout = "2.1.4"
+swipelayout = "1.3.1"
 view = "2.5.4"
 
 [libraries]
@@ -26,6 +27,7 @@ androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref =
 androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
 calender-view = { module = "com.kizitonwose.calendar:view", version.ref = "view" }
+swipelayout = { module = "com.github.zerobranch:SwipeLayout", version.ref = "swipelayout" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
