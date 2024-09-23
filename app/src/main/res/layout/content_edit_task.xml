@@ -32,7 +32,7 @@
                     style="@style/EditTaskTextStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/edit_task_text_in_content_edit_task"
+                    android:text="@string/edit_task_text"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -49,7 +49,7 @@
                         style="@style/TitleDescriptionTextStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/title_hint_in_edit_task"
+                        android:hint="@string/title_hint"
                         android:maxLines="5" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -66,7 +66,7 @@
                         style="@style/TitleDescriptionTextStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/description_hint_in_edit_task"
+                        android:hint="@string/description_hint"
                         android:lines="3"
                         android:maxLines="5" />
 
@@ -86,7 +86,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:hint="@string/select_date_hint_in_edit_task"
+                        android:hint="@string/select_date_hint"
                         android:padding="10dp" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -105,7 +105,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:hint="@string/select_time_hint_in_edit_task"
+                        android:hint="@string/select_time_hint"
                         android:padding="10dp" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -118,7 +118,7 @@
                     android:backgroundTint="@color/blue"
                     android:paddingHorizontal="30dp"
                     android:paddingVertical="13dp"
-                    android:text="@string/save_button_in_edit_task"
+                    android:text="@string/save_changes_text_in_button"
                     android:textColor="@android:color/white"
                     android:textSize="16sp"
                     app:cornerRadius="50dp"

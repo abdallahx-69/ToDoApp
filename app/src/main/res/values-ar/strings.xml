@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ToDo</string>
+    <string name="icon_add_new_task_content_description">أيقونة إضافة مهمة</string>
+    <string name="icon_edit_task_content_description">أيقونة تعديل المهمة</string>
+    <string name="icon_check_task_content_description">أيقونة إتمام المهمة</string>
+    <string name="todo_list_title">قائمة المهام</string>
+    <string name="enter_task_title_hint">أدخل عنوان المهمة</string>
+    <string name="add_new_task_text">إضافة مهمة جديدة</string>
+    <string name="enter_task_description_hint">أدخل وصف المهمة</string>
+    <string name="select_date_of_task_hint">إختر تاريخ المهمة</string>
+    <string name="select_time_of_task_hint">إختر وقت المهمة</string>
+    <string name="add_text_in_button">إضافة</string>
+    <string name="required">هذا الحقل مطلوب</string>
+    <string name="select_date_because_it_s_required">إختر التاريخ لأنه مطلوب</string>
+    <string name="select_time_because_it_s_required">إختر الوقت لأنه مطلوب</string>
+    <string name="list_title_icon">أيقونة قائمة المهام</string>
+    <string name="language_title_icon">أيقونة اللغة</string>
+    <string name="mode_title_icon">أيقونة الوضع</string>
+    <string name="edit_task_text">تعديل المهمة</string>
+    <string name="title_hint">العنوان</string>
+    <string name="description_hint">الوصف</string>
+    <string name="select_date_hint">اختر التاريخ</string>
+    <string name="select_time_hint">اختر الوقت</string>
+    <string name="save_changes_text_in_button">حفظ التغييرات</string>
+    <string name="edit_text_in_button">تعديل</string>
+    <string name="icon_delete_task_content_description">أيقونة حذف المهمة</string>
+</resources>

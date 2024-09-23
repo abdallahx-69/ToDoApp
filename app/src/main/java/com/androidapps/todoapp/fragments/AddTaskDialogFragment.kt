@@ -41,7 +41,7 @@ class AddTaskDialogFragment : DialogFragment() {
         initViews()
     }
 
-    @SuppressLint("SetTextI18n")
+    @SuppressLint("SetTextI18n", "DefaultLocale")
     private fun initViews() {
         binding.idAddButton.setOnClickListener {
             if (validateFields()) {
@@ -92,7 +92,8 @@ class AddTaskDialogFragment : DialogFragment() {
                     var hour = hourOfDay % 12
                     if (hour == 0) hour = 12
                     val AM_PM = if ((hourOfDay > 12)) "PM" else "AM"
-                    binding.idSelectTaskTime.text = "${hour}:${minute} $AM_PM"
+                    val formattedMinute = if (minute < 10) "0$minute" else "$minute"
+                    binding.idSelectTaskTime.text = "$hour:$formattedMinute $AM_PM"
                 },
                 calendar.get(Calendar.HOUR_OF_DAY),
                 calendar.get(Calendar.MINUTE),

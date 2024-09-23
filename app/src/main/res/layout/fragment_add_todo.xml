@@ -10,7 +10,7 @@
         style="@style/AddNewTaskTextStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/add_new_task_in_add_todo"
+        android:text="@string/add_new_task_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -39,7 +39,7 @@
         style="@style/SelectAddDateTimeTextStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/select_date_of_task"
+        android:text="@string/select_date_of_task_hint"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/id_descriptionEditText" />
@@ -49,7 +49,7 @@
         style="@style/SelectAddDateTimeTextStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/select_time_of_task"
+        android:text="@string/select_time_of_task_hint"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/id_selectTaskDate" />
@@ -61,7 +61,7 @@
         android:layout_margin="5dp"
         android:backgroundTint="@color/blue"
         android:padding="10dp"
-        android:text="@string/text_in_add_bottom"
+        android:text="@string/add_text_in_button"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
