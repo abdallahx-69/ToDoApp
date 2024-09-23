@@ -91,7 +91,7 @@ class AddTaskDialogFragment : DialogFragment() {
                     calendar.set(Calendar.MINUTE, minute)
                     var hour = hourOfDay % 12
                     if (hour == 0) hour = 12
-                    val AM_PM = if ((hourOfDay > 12)) "PM" else "Am"
+                    val AM_PM = if ((hourOfDay > 12)) "PM" else "AM"
                     binding.idSelectTaskTime.text = "${hour}:${minute} $AM_PM"
                 },
                 calendar.get(Calendar.HOUR_OF_DAY),

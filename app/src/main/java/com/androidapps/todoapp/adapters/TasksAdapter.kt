@@ -5,6 +5,7 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.androidapps.todoapp.R
 import com.androidapps.todoapp.database.database.TaskDataBase
 import com.androidapps.todoapp.database.model.Task
 import com.androidapps.todoapp.databinding.ItemTaskBinding
@@ -26,6 +27,16 @@ class TasksAdapter(private var tasksList: List<Task>) :
                 dateFormat.format(it)
             }
             binding.idTaskDate.text = formattedDate ?: "No Date"
+
+            if (task.isDone == true) {
+                binding.idTaskTitle.setTextColor(binding.root.context.getColor(R.color.green))
+                binding.idTaskStatus.setBackgroundColor(binding.root.context.getColor(R.color.green))
+                binding.idDoneTaskButton.setImageResource(R.drawable.icon_done)
+            } else {
+                binding.idTaskTitle.setTextColor(binding.root.context.getColor(R.color.blue))
+                binding.idTaskStatus.setBackgroundColor(binding.root.context.getColor(R.color.blue))
+                binding.idDoneTaskButton.setImageResource(R.drawable.icon_check)
+            }
         }
     }
 
@@ -41,8 +52,27 @@ class TasksAdapter(private var tasksList: List<Task>) :
     override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
         val task = tasksList[position]
         holder.bind(task)
+        holder.binding.idDoneTaskButton.setOnClickListener {
+            doneButton(holder, task)
+        }
         editButton(holder, task)
         deleteButton(holder, task)
+    }
+
+    private fun doneButton(holder: TaskViewHolder, task: Task) {
+        task.isDone = !task.isDone!!
+        if (task.isDone == true) {
+            holder.binding.idDoneTaskButton.setImageResource(R.drawable.icon_done)
+            holder.binding.idTaskTitle.setTextColor(holder.binding.root.context.getColor(R.color.green))
+            holder.binding.idTaskStatus.setBackgroundColor(holder.binding.root.context.getColor(R.color.green))
+        } else {
+            holder.binding.idDoneTaskButton.setImageResource(R.drawable.icon_check)
+            holder.binding.idTaskTitle.setTextColor(holder.binding.root.context.getColor(R.color.blue))
+            holder.binding.idTaskStatus.setBackgroundColor(holder.binding.root.context.getColor(R.color.blue))
+        }
+        val context = holder.binding.root.context
+        val taskDao = TaskDataBase.getInstance(context).getTaskDao()
+        taskDao.updateTask(task)
     }
 
     private fun editButton(holder: TaskViewHolder, task: Task) {
@@ -72,4 +102,5 @@ class TasksAdapter(private var tasksList: List<Task>) :
         taskDao.deleteTask(task)
         updateList(taskDao.getAllTasks())
     }
+
 }
