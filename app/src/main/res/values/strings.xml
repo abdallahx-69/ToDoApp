@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">ToDo</string>
     <string name="icon_add_new_task_content_description">Icon Add</string>
@@ -24,4 +25,8 @@
     <string name="select_time_hint">Select Time</string>
     <string name="save_changes_text_in_button">Save Changes</string>
     <string name="edit_text_in_button">Edit</string>
+    <string name="am">AM</string>
+    <string name="pm">PM</string>
+    <string name="logo_todo_content_description">Logo ToDo</string>
+    <string name="logo_route_content_description">Logo Route</string>
 </resources>

@@ -12,6 +12,7 @@ import com.androidapps.todoapp.database.typeConverters.DataConverter
 @Database([Task::class], version = 2, exportSchema = false)
 @TypeConverters(DataConverter::class)
 abstract class TaskDataBase : RoomDatabase() {
+
     abstract fun getTaskDao(): TaskDao
 
     companion object {

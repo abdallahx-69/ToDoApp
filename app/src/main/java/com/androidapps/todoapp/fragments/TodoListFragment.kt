@@ -12,7 +12,7 @@ import com.androidapps.todoapp.R
 import com.androidapps.todoapp.adapters.TasksAdapter
 import com.androidapps.todoapp.database.database.TaskDataBase
 import com.androidapps.todoapp.databinding.FragmentTodoListBinding
-import com.androidapps.todoapp.home.WeekDayViewContainer
+import com.androidapps.todoapp.ui.WeekDayViewContainer
 import com.kizitonwose.calendar.core.Week
 import com.kizitonwose.calendar.core.WeekDay
 import com.kizitonwose.calendar.core.atStartOfMonth
@@ -72,11 +72,12 @@ class TodoListFragment : Fragment() {
         binding.idWeekCalendarView.dayBinder = object : WeekDayBinder<WeekDayViewContainer> {
             @SuppressLint("SetTextI18n")
             override fun bind(container: WeekDayViewContainer, data: WeekDay) {
-                container.weekDayTextView.text = data.date.dayOfWeek.getDisplayName(
-                    TextStyle.SHORT, Locale.getDefault()
-                )
+                container.weekDayTextView.text =
+                    data.date.dayOfWeek.getDisplayName(TextStyle.SHORT, Locale.getDefault())
+
                 container.dayInMonthTextView.text = "${data.date.dayOfMonth}"
                 val context = container.view.context
+
                 val selectedTextColor =
                     ResourcesCompat.getColor(context.resources, R.color.blue, null)
                 val defaultTextColor = if (context.resources.configuration.uiMode and
@@ -86,6 +87,7 @@ class TodoListFragment : Fragment() {
                 } else {
                     ResourcesCompat.getColor(context.resources, R.color.dark_gray, null)
                 }
+
                 if (data.date == selectedDate) {
                     container.dayInMonthTextView.setTextColor(selectedTextColor)
                     container.weekDayTextView.setTextColor(selectedTextColor)
@@ -93,6 +95,7 @@ class TodoListFragment : Fragment() {
                     container.dayInMonthTextView.setTextColor(defaultTextColor)
                     container.weekDayTextView.setTextColor(defaultTextColor)
                 }
+
                 container.view.setOnClickListener {
                     selectedDate = data.date
                     binding.idWeekCalendarView.notifyWeekChanged(data)
@@ -112,6 +115,7 @@ class TodoListFragment : Fragment() {
                 return WeekDayViewContainer(view)
             }
         }
+
         binding.idWeekCalendarView.weekScrollListener = { week: Week ->
             val month = week.days[0].date.month.getDisplayName(TextStyle.FULL, Locale.getDefault())
             binding.idMonthNameText.text = month
@@ -125,12 +129,14 @@ class TodoListFragment : Fragment() {
         calendar.set(Calendar.MINUTE, 0)
         calendar.set(Calendar.SECOND, 0)
         calendar.set(Calendar.MILLISECOND, 0)
+
         val startDate = calendar.time
         calendar.set(Calendar.HOUR_OF_DAY, 23)
         calendar.set(Calendar.MINUTE, 59)
         calendar.set(Calendar.SECOND, 59)
         calendar.set(Calendar.MILLISECOND, 999)
         val endDate = calendar.time
+
         val tasks = TaskDataBase.getInstance(requireContext()).getTaskDao()
             .getTaskByDateRange(startDate, endDate)
         adapter.updateList(tasks)
@@ -159,5 +165,4 @@ class TodoListFragment : Fragment() {
         }
         binding.idWeekCalendarView.notifyCalendarChanged()
     }
-
 }

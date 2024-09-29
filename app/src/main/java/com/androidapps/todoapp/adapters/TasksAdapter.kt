@@ -9,20 +9,60 @@ import com.androidapps.todoapp.R
 import com.androidapps.todoapp.database.database.TaskDataBase
 import com.androidapps.todoapp.database.model.Task
 import com.androidapps.todoapp.databinding.ItemTaskBinding
-import com.androidapps.todoapp.home.EditTaskActivity
+import com.androidapps.todoapp.ui.EditTaskActivity
 import com.androidapps.todoapp.utils.Constance
 import java.text.SimpleDateFormat
 import java.util.Locale
 
 class TasksAdapter(private var tasksList: List<Task>) :
     RecyclerView.Adapter<TasksAdapter.TaskViewHolder>() {
-
     class TaskViewHolder(val binding: ItemTaskBinding) :
         RecyclerView.ViewHolder(binding.root) {
+
         private val dateFormat = SimpleDateFormat("d/M/yyyy", Locale.getDefault())
+
+        private fun formatTime(time: String?): String {
+            if (time.isNullOrEmpty()) return "No Time"
+            val locale = Locale.getDefault().language
+            val translatedTime: String = if (locale == "ar") {
+                time.replace("AM", "ص").replace("PM", "م")
+            } else {
+                time.replace("ص", "AM").replace("م", "PM")
+            }
+            return translateNumbers(translatedTime, locale)
+        }
+
+        private fun translateNumbers(time: String, locale: String): String {
+            return if (locale == "ar") {
+                time.replace("0", "٠")
+                    .replace("1", "١")
+                    .replace("2", "٢")
+                    .replace("3", "٣")
+                    .replace("4", "٤")
+                    .replace("5", "٥")
+                    .replace("6", "٦")
+                    .replace("7", "٧")
+                    .replace("8", "٨")
+                    .replace("9", "٩")
+            } else {
+                time.replace("٠", "0")
+                    .replace("١", "1")
+                    .replace("٢", "2")
+                    .replace("٣", "3")
+                    .replace("٤", "4")
+                    .replace("٥", "5")
+                    .replace("٦", "6")
+                    .replace("٧", "7")
+                    .replace("٨", "8")
+                    .replace("٩", "9")
+            }
+        }
+
         fun bind(task: Task) {
-            binding.idTaskTime.text = task.time
+            val formattedTime = formatTime(task.time)
+            binding.idTaskTime.text = formattedTime
             binding.idTaskTitle.text = task.title
+
             val formattedDate = task.date?.let {
                 dateFormat.format(it)
             }
@@ -61,6 +101,7 @@ class TasksAdapter(private var tasksList: List<Task>) :
 
     private fun doneButton(holder: TaskViewHolder, task: Task) {
         task.isDone = !task.isDone!!
+
         if (task.isDone == true) {
             holder.binding.idDoneTaskButton.setImageResource(R.drawable.icon_done)
             holder.binding.idTaskTitle.setTextColor(holder.binding.root.context.getColor(R.color.green))
@@ -70,6 +111,7 @@ class TasksAdapter(private var tasksList: List<Task>) :
             holder.binding.idTaskTitle.setTextColor(holder.binding.root.context.getColor(R.color.blue))
             holder.binding.idTaskStatus.setBackgroundColor(holder.binding.root.context.getColor(R.color.blue))
         }
+
         val context = holder.binding.root.context
         val taskDao = TaskDataBase.getInstance(context).getTaskDao()
         taskDao.updateTask(task)
@@ -102,5 +144,4 @@ class TasksAdapter(private var tasksList: List<Task>) :
         taskDao.deleteTask(task)
         updateList(taskDao.getAllTasks())
     }
-
 }

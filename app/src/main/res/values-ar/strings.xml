@@ -25,4 +25,7 @@
     <string name="save_changes_text_in_button">حفظ التغييرات</string>
     <string name="edit_text_in_button">تعديل</string>
     <string name="icon_delete_task_content_description">أيقونة حذف المهمة</string>
+    <string name="am">ص</string>
+    <string name="pm">م</string>
+    <string name="logo_todo_content_description">لوجو البرنامج</string>
 </resources>

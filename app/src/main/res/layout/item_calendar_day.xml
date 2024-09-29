@@ -27,8 +27,6 @@
                 style="@style/TextStyleInItemCalender"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:baselineAligned="false"
-                android:padding="1dp"
                 tools:text="Sun" />
 
             <TextView
@@ -36,9 +34,9 @@
                 style="@style/TextStyleInItemCalender"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:baselineAligned="false"
-                android:padding="1dp"
                 tools:text="69" />
         </LinearLayout>
+
     </com.google.android.material.card.MaterialCardView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

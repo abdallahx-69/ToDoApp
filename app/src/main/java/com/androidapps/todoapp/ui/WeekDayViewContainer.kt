@@ -1,4 +1,4 @@
-package com.androidapps.todoapp.home
+package com.androidapps.todoapp.ui
 
 import android.view.View
 import android.widget.TextView

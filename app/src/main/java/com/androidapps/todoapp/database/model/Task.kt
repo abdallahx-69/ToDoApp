@@ -9,6 +9,7 @@ import java.util.Date
 @Parcelize
 @Entity(tableName = "Task")
 data class Task(
+
     @PrimaryKey(autoGenerate = true)
     var id: Int?,
     var title: String? = null,

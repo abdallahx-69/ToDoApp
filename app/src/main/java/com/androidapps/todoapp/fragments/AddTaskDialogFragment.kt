@@ -15,13 +15,16 @@ import com.androidapps.todoapp.callbacks.OnTaskAddedListener
 import com.androidapps.todoapp.database.database.TaskDataBase
 import com.androidapps.todoapp.database.model.Task
 import com.androidapps.todoapp.databinding.FragmentAddTodoBinding
+import com.androidapps.todoapp.utils.LocaleHelper
 
 class AddTaskDialogFragment : DialogFragment() {
+
     private lateinit var binding: FragmentAddTodoBinding
     private lateinit var calendar: Calendar
     private var isDateSelected: Boolean = false
     private var isTimeSelected: Boolean = false
     var onTaskAddedListener: OnTaskAddedListener? = null
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -44,6 +47,7 @@ class AddTaskDialogFragment : DialogFragment() {
     @SuppressLint("SetTextI18n", "DefaultLocale")
     private fun initViews() {
         binding.idAddButton.setOnClickListener {
+
             if (validateFields()) {
                 calendar.set(Calendar.HOUR, 0)
                 calendar.set(Calendar.MINUTE, 0)
@@ -57,12 +61,12 @@ class AddTaskDialogFragment : DialogFragment() {
                     binding.idSelectTaskTime.text.toString(),
                     false
                 )
-
                 TaskDataBase.getInstance(requireContext()).getTaskDao().insertTask(task)
                 onTaskAddedListener?.onTaskAdded()
                 dismiss()
             }
         }
+
         binding.idSelectTaskDate.setOnClickListener {
             val datePickerDialog = DatePickerDialog(
                 requireContext(),
@@ -72,7 +76,9 @@ class AddTaskDialogFragment : DialogFragment() {
                     calendar.set(Calendar.YEAR, year)
                     calendar.set(Calendar.MONTH, month)
                     calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
-                    binding.idSelectTaskDate.text = "$dayOfMonth/${month + 1}/$year"
+                    val locale = LocaleHelper.getPersistedLanguage(requireContext())
+                    val formattedDate = formatDate(dayOfMonth, month + 1, year)
+                    binding.idSelectTaskDate.text = translateNumbers(formattedDate, locale)
                 },
                 calendar.get(Calendar.YEAR),
                 calendar.get(Calendar.MONTH),
@@ -89,11 +95,9 @@ class AddTaskDialogFragment : DialogFragment() {
                     isTimeSelected = true
                     calendar.set(Calendar.HOUR_OF_DAY, hourOfDay)
                     calendar.set(Calendar.MINUTE, minute)
-                    var hour = hourOfDay % 12
-                    if (hour == 0) hour = 12
-                    val AM_PM = if ((hourOfDay > 12)) "PM" else "AM"
-                    val formattedMinute = if (minute < 10) "0$minute" else "$minute"
-                    binding.idSelectTaskTime.text = "$hour:$formattedMinute $AM_PM"
+                    val locale = LocaleHelper.getPersistedLanguage(requireContext())
+                    val formattedTime = formatTime(hourOfDay, minute, locale)
+                    binding.idSelectTaskTime.text = translateNumbers(formattedTime, locale)
                 },
                 calendar.get(Calendar.HOUR_OF_DAY),
                 calendar.get(Calendar.MINUTE),
@@ -101,22 +105,66 @@ class AddTaskDialogFragment : DialogFragment() {
             )
             timePicker.show()
         }
+    }
 
+    private fun translateNumbers(time: String, locale: String): String {
+        return if (locale == "ar") {
+            time.replace("0", "٠")
+                .replace("1", "١")
+                .replace("2", "٢")
+                .replace("3", "٣")
+                .replace("4", "٤")
+                .replace("5", "٥")
+                .replace("6", "٦")
+                .replace("7", "٧")
+                .replace("8", "٨")
+                .replace("9", "٩")
+        } else {
+            time.replace("٠", "0")
+                .replace("١", "1")
+                .replace("٢", "2")
+                .replace("٣", "3")
+                .replace("٤", "4")
+                .replace("٥", "5")
+                .replace("٦", "6")
+                .replace("٧", "7")
+                .replace("٨", "8")
+                .replace("٩", "9")
+        }
+    }
+
+    private fun formatDate(day: Int, month: Int, year: Int): String {
+        return "$day/$month/$year"
+    }
+
+    private fun formatTime(hourOfDay: Int, minute: Int, locale: String): String {
+        var hour = hourOfDay % 12
+        if (hour == 0) hour = 12
+        val formattedMinute = if (minute < 10) "0$minute" else "$minute"
+        val amPm = if (hourOfDay >= 12) {
+            if (locale == "ar") "م" else "PM"
+        } else {
+            if (locale == "ar") "ص" else "AM"
+        }
+        return "$hour:$formattedMinute $amPm"
     }
 
     private fun validateFields(): Boolean {
+
         if (binding.idTitleEditText.text.isEmpty() || binding.idTitleEditText.text.isBlank()) {
             binding.idTitleEditText.error = getString(R.string.required)
             return false
         } else {
             binding.idTitleEditText.error = null
         }
+
         if (binding.idDescriptionEditText.text.isEmpty() || binding.idDescriptionEditText.text.isBlank()) {
             binding.idDescriptionEditText.error = getString(R.string.required)
             return false
         } else {
             binding.idDescriptionEditText.error = null
         }
+
         if (!isDateSelected) {
             Toast.makeText(
                 requireContext(),
@@ -125,6 +173,7 @@ class AddTaskDialogFragment : DialogFragment() {
             ).show()
             return false
         }
+
         if (!isTimeSelected) {
             Toast.makeText(
                 requireContext(),
