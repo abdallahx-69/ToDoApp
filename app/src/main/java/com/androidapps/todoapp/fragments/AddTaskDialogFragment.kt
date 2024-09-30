@@ -84,6 +84,12 @@ class AddTaskDialogFragment : DialogFragment() {
                 calendar.get(Calendar.MONTH),
                 calendar.get(Calendar.DAY_OF_MONTH)
             )
+            LocaleHelper.setLocale(
+                requireContext(),
+                LocaleHelper.getPersistedLanguage(requireContext())
+            )
+            datePickerDialog.setOnShowListener {
+            }
             datePickerDialog.show()
         }
 
@@ -102,6 +108,10 @@ class AddTaskDialogFragment : DialogFragment() {
                 calendar.get(Calendar.HOUR_OF_DAY),
                 calendar.get(Calendar.MINUTE),
                 false
+            )
+            LocaleHelper.setLocale(
+                requireContext(),
+                LocaleHelper.getPersistedLanguage(requireContext())
             )
             timePicker.show()
         }

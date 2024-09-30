@@ -12,4 +12,6 @@
     <color name="gray">#8A8A8A</color>
     <color name="dark_gray">#363636</color>
     <color name="red">#FF1100</color>
+    <color name="headerBackgroundColor">#2196F3</color>
+    <color name="headerTextColor">#FFFFFF</color>
 </resources>
